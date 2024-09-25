@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Index page</title>
+    <link rel="stylesheet" href="../bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+  <body>
+    <form action="/insertData" method="post">
+      <div class="container">
+        <div class="d-flex justify-content-center vh-100 align-items-center">
+          <div class="col-10">
+            <table class="table table-borderless">
+              <caption class="caption-top text-center">
+                <h1 class="text-danger-emphasis">Insert Book Data</h1>
+              </caption>
+              <tr>
+                <td class="justify-content-center h-100 align-items-center d-flex">Title</td>
+                <td>
+                  <input type="text" class="form-control" name="title" required value="<%=data.title%>" />
+                  <input type="hidden" name="editId" value="<%=data.id%>">
+                </td>
+              </tr>
+              <tr>
+                <td class="justify-content-center h-100 align-items-center d-flex">Price</td>
+                <td><input type="number" name="price" required class="form-control" value="<%=data.price%>" /></td>
+              </tr>
+              <tr>
+                <td class="justify-content-center h-100 align-items-center d-flex">Author</td>
+                <td><input type="text" name="author" required  class="form-control" value="<%=data.author%>" /></td>
+              </tr>
+              <tr>
+                <td class="justify-content-center h-100 align-items-center d-flex">City</td>
+                <td>
+                  <select name="city" value="city" class="form-select">
+                    <option disabled selected>--select city --</option>
+                    <% let city=['Surat','Pune','Vadodra','Bharuch']
+                    city.map((val,idx)=>{ %>
+                    <option value="<%=val%>" <% if(data.city==val){%>selected
+                      <% } %>>
+                      <%= val%>
+                  </option>
+                    <% }) %>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td class="justify-content-center h-100 align-items-center d-flex">Pages</td>
+                <td>
+                  <input type="radio" name="pages" class="form-check-input"  value="50-100"  <% if(data.pages=="50-100"){%>checked<%}%>>50-100
+                  <input type="radio" name="pages"  class="form-check-input" value="100-200" <% if(data.pages=="100-200"){%>checked<%}%>>100-200
+                  <input type="radio" name="pages"  class="form-check-input" value="200-300" <% if(data.pages=="200-300"){%>checked<%}%>>200-300
+                </td>
+              </tr>
+              <tr>
+    <td class="justify-content-center h-100 align-items-center d-flex">Language</td>
+    <td>
+      <input type="checkbox" name="language" class="form-check-input" value="Gujarati" <% if(data.language.includes("Gujarati")){%>checked<%}%>> Gujarati
+      <input type="checkbox" name="language" class="form-check-input" value="Hindi" <% if(data.language.includes("Hindi")){%>checked<%}%>> Hindi
+      <input type="checkbox" name="language" class="form-check-input" value="English" <% if(data.language.includes("English")){%>checked<%}%>> English
+    </td>
+  </tr>
+  
+              <tr>
+                  <td class="align-content-center text-center">Description</td>
+                  <td><textarea name="description" class="form-control" required><%= data.description%></textarea></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td><input type="submit" class="btn btn-primary" value="Add Data" /></td>
+              </tr>
+            </table>
+
+          </div>
+        </div>
+      </div>
+    </form>
+  </body>
+</html>

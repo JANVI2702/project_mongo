@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Index page</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../bootstrap/dist/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="d-flex justify-content-center">
+        <form action="/insertData" method="post">
+          <table class="table mt-4 table-borderless">
+            <caption class="caption-top">
+              <h1 class="text-center text-black bg-danger-subtle">
+                Insert Book Data
+              </h1>
+            </caption>
+            <tbody>
+              <tr>
+                <td
+                  class="justify-content-center h-100 align-items-center d-flex"
+                >
+                  Title
+                </td>
+                <td class="align-baseline">
+                  <input
+                    type="text"
+                    name="title"
+                    class="form-control"
+                    required
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td
+                  class="justify-content-center h-100 align-items-center d-flex"
+                >
+                  Price
+                </td>
+                <td>
+                  <input
+                    type="number"
+                    name="price"
+                    class="form-control"
+                    required
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td
+                  class="justify-content-center h-100 align-items-center d-flex"
+                >
+                  Author
+                </td>
+                <td>
+                  <input
+                    type="text"
+                    name="author"
+                    class="form-control"
+                    required
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td
+                  class="justify-content-center h-100 align-items-center d-flex"
+                >
+                  City
+                </td>
+                <td>
+                  <select name="city" value="city" class="form-select">
+                    <option disabled selected>--select city --</option>
+                    <% let city=['Surat','Pune','Vadodra','Bharuch']%> <%
+                    city.map((val,idx)=>{ %>
+                    <option value="<%=val%>"><%=val%></option>
+                    <% }) %>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td
+                  class="justify-content-center h-100 align-items-center d-flex"
+                >
+                  Pages
+                </td>
+                <td class="align-baseline">
+                  <input
+                    type="radio"
+                    name="pages"
+                    value="50-100"
+                    class="form-check-input"
+                  />
+                  50-100
+                  <input
+                    type="radio"
+                    name="pages"
+                    value="100-200"
+                    class="form-check-input ms-2"
+                  />
+                  100-200
+                  <input
+                    type="radio"
+                    name="pages"
+                    value="200-300"
+                    class="form-check-input ms-2"
+                  />
+                  200-300
+                </td>
+              </tr>
+              <tr>
+                <td
+                  class="justify-content-center h-100 align-items-center d-flex"
+                >
+                  Language
+                </td>
+                <td>
+                  <input
+                    type="checkbox"
+                    name="language"
+                    value="Gujarati"
+                    class="form-check-input"
+                  />
+                  Gujarati
+                  <input
+                    type="checkbox"
+                    name="language"
+                    value="Hindi"
+                    class="form-check-input ms-2"
+                  />
+                  Hindi
+                  <input
+                    type="checkbox"
+                    name="language"
+                    value="English"
+                    class="form-check-input ms-2"
+                  />
+                  English
+                </td>
+              </tr>
+              <tr>
+                <td class="align-content-center">Description</td>
+                <td>
+                  <textarea
+                    name="description"
+                    class="form-control"
+                    required
+                  ></textarea>
+                </td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>
+                  <input
+                    type="submit"
+                    class="btn btn-outline-primary"
+                    value="ADD DATA"
+                  />
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </form>
+      </div>
+      <div class="d-flex justify-content-center">
+        <div class="mt-5">
+          <table class="table table-borderless">
+            <caption class="caption-top">
+              <h2 class="text-center text-black bg-danger-subtle">Book Data</h2>
+            </caption>
+            <tr>
+              <td>Title</td>
+              <td>Price</td>
+              <td>Auhtor</td>
+              <td>City</td>
+              <td>Pages</td>
+              <td>Language</td>
+              <td>Description</td>
+              <td>Action</td>
+            </tr>
+            <% data.map((val,idx)=>{ %>
+            <tr>
+              <td><%= val.title %></td>
+              <td><%= val.price %></td>
+              <td><%= val.author %></td>
+              <td><%= val.city %></td>
+              <td><%= val.pages %></td>
+              <td><%= val.language %></td>
+              <td><%= val.description %></td>
+              <td>
+                <button class="btn btn-outline-primary">
+                  <a
+                    class="text-decoration-none"
+                    id=""
+                    href="/deleteData/<%= val.id %>"
+                    >Delete</a
+                  >
+                </button>
+                <button class="btn btn-outline-warning">
+                  <a
+                    class="text-primary text-decoration-none"
+                    href="/editData/<%= val.id %>"
+                    >Edit</a
+                  >
+                </button>
+              </td>
+            </tr>
+            <% })%>
+          </table>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
